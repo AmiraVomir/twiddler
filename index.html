@@ -1,27 +1,61 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Latest Tweed / Twiddler</title>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" href="stylesheet.css">
   </head>
+
   <body>
-    <script>
+    <header class="header">
+      <h1 class="home-btn"><a href="index.html">Tweedler</a></h1>
+    </header>
 
-      $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+    <section class="container">
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
+      <div class="top-nav">
+        <h3 class="refresh"><a href="index.html">Latest Tweed</a></h3>
+      </div>
 
-      });
+    </section>
 
-    </script>
+    <section class="container">
+      <nav class="left-nav">
+        <ul>
+          <li><a href="#Home">Home</a></li>
+          <li><a href="#Explore">Explore</a></li>
+          <li><a href="Notifications">Notifications</a></li>
+          <li><a href="Messages">Messages</a></li>
+          <li><a href="Bookmarks">Bookmarks</a></li>
+          <li><a href="Lists">Lists</a></li>
+          <li><input class="button" type="submit" value="Tweed" name="TweedButton" ></li>
+        </ul>
+
+      </nav>
+    </section>
+
+      <aside>
+        <script>
+
+          $(document).ready(function(){
+            var $body = $('body');
+            // $body.html('');
+
+            var index = streams.home.length - 1;
+            while(index >= 0){
+              var tweet = streams.home[index];
+              var $tweet = $('<div class="tweets"></div>');
+              $tweet.text('@' + tweet.user + ': ' + tweet.message);
+              $tweet.appendTo($body);
+              index -= 1;
+              $("tweet").addClass('tweets')
+            }
+          });
+
+        </script>
+
+      </aside>
+
   </body>
 </html>
