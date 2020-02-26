@@ -3,6 +3,12 @@
    License: none (public domain)
 */
 
+/*
+===================================
+RESET
+===================================
+*/
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -49,18 +55,9 @@ table {
 
 /*
 ===================================
-RESET
+BODY
 ===================================
 */
-
-header {
-  color: cyan;
-  font-size: 35px;
-  display: block;
-  text-align: left;
-  margin: 10px 300px;
-  padding: 0 0 5px 0;
-}
 
 body {
   background-color: white;
@@ -68,44 +65,9 @@ body {
 }
 
 section {
-  background-color:#ffffff;
+/*   background-color:#ffffff; */
   float: center;
-  padding: 0 0 0 300px;
-}
-
-.container .refresh{
-  text-align: left;
-  margin: 10px 300px;
-}
-
-.left-nav {
-	float: left;
-	width: 10%;
-	background-color: white;
-	border-right: 2px solid gray;
-	border-radius: 12px;
-}
-
-div.tweets {
-	float: right;
-	background-color: #03A9F4;
-	color: white;
-	border-radius: 10px;
-	text-align: justify;
-	display: block;
-	padding: 20px 10px;
-	margin: 2px 150px;
-	width: 900px;
-	right: 200px;
-	position: relative;
-}
-
-section .button {
-  background-color: #E91E63;
-  color: white;
-  border-radius: 20px;
-  display: block;
-  padding: 12px 50px;
+/*   padding: 0 0 0 300px; */
 }
 
 li {
@@ -115,6 +77,90 @@ li {
 a {
   text-decoration: none;
 }
+a:hover {
+  color: orange;
+}
 
+/*
+===================================
+HEADER
+===================================
+*/
 
+header {
+  color: cyan;
+  font-size: 35px;
+  display: block;
+  text-align: center;
+  margin: 0 10px;
+  padding: 0 30px;
+  width: auto;
+}
 
+/*
+===================================
+TOP NAV
+===================================
+*/
+.container {
+	margin: 10px 10px;
+	padding: 10px 30px;
+	width: auto;
+}
+
+.container .refresh{
+	float: center;
+	padding-left: 35%;
+	padding-bottom: 4%;
+
+/*     margin: 10px 360px;
+    padding-bottom: 50px;
+    border-radius:12px;
+    float: center;
+    width: 900px; */
+  }
+
+/*
+===================================
+LEFT NAV
+===================================
+*/
+
+.left-nav {
+  clear: both;
+	float: left;
+	padding-left: 10%;
+
+	width: 15%;
+	border-right: 2px solid gray;
+	border-radius: 12px;
+}
+
+section .button {
+  background-color: #E91E63;
+  color: white;
+  border-radius: 15px;
+  display: block;
+  padding: 12px 20%;
+}
+
+/*
+===================================
+TIMELINE
+===================================
+*/
+
+div.tweets {
+	float: right;
+	width: auto;
+	background-color: #03A9F4;
+	color: white;
+	border-radius: 10px;
+	text-align: left;
+	display: block;
+	padding: 20px 10px;
+	margin: 2px 7%;
+	width: 50%;
+	right: 12%;
+	position: relative;
+}
