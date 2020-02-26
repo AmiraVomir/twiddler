@@ -8,17 +8,28 @@
   </head>
 
   <body>
+
+<!-- ===================================
+HEADER
+=================================== -->
+
     <header class="header">
       <h1 class="home-btn"><a href="index.html">Tweedler</a></h1>
     </header>
 
+<!-- ===================================
+TOP NAV
+=================================== -->
+
     <section class="container">
-
       <div class="top-nav">
-        <h3 class="refresh"><a href="index.html">Latest Tweed</a></h3>
+        <h3 class="refresh"><a href="index.html"><input class="button" type="submit" value="Latest Tweed"></a></h3>
       </div>
-
     </section>
+
+<!-- ===================================
+LEFT NAV
+=================================== -->
 
     <section class="container">
       <nav class="left-nav">
@@ -31,25 +42,27 @@
           <li><a href="Lists">Lists</a></li>
           <li><input class="button" type="submit" value="Tweed" name="TweedButton" ></li>
         </ul>
-
       </nav>
     </section>
+
+<!-- ===================================
+TIMELINE
+=================================== -->
 
       <aside>
         <script>
 
           $(document).ready(function(){
             var $body = $('body');
-            // $body.html('');
+            // $body.html('Loading');
 
             var index = streams.home.length - 1;
             while(index >= 0){
               var tweet = streams.home[index];
               var $tweet = $('<div class="tweets"></div>');
-              $tweet.text('@' + tweet.user + ': ' + tweet.message);
+              $tweet.html(tweet.created_at + ' @' + tweet.user + ': ' + tweet.message);
               $tweet.appendTo($body);
               index -= 1;
-              $("tweet").addClass('tweets')
             }
           });
 
