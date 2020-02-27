@@ -56,13 +56,8 @@ LEFT NAV
 
         $(document).ready(function(){
           var $timeLine = $('.tweet-container');
-          // $body.html('Loading');
+          $timeLine.html('');
 
-          // var tweetLength = function() {
-          //   function count(){
-          //     return streams.home.length;
-          //   }
-          // }
             var index = streams.home.length -1;
             var currentCount = streams.home.length;
             var newCount = currentCount;
@@ -70,17 +65,15 @@ LEFT NAV
             while(index >= 0){
               var tweet = streams.home[index];
               var $tweet = $('<div class="tweets"></div>');
-              $tweet.html(tweet.created_at + ' @' + tweet.user + ': ' + tweet.message);
+              $tweet.text(tweet.created_at + ' @' + tweet.user + ': ' + tweet.message);
               $tweet.appendTo($timeLine);
               index -= 1;
             }
 
-
             function checkTweets(){
               newCount = streams.home.length;
               if(newCount > currentCount) {
-                var newIndex = newCount -1;
-                showNewTweets(newIndex);
+                showNewTweets();
               }
               setTimeout(function() {
                 checkTweets();
@@ -88,10 +81,15 @@ LEFT NAV
             }
             checkTweets();
 
-            function showNewTweets(number){
-                var tweets = streams.home[number];
-                $tweet.html(tweet.created_at + ' @2' + tweet.user + ': ' + tweet.message);
+            function showNewTweets(){
+              while (newCount > currentCount) {
+                var tweet = streams.home[currentCount+1];
+                var $tweet = $('<div class="tweets"></div>');
+                $tweet.text(tweet.created_at + ' @2' + tweet.user + ': ' + tweet.message);
                 $tweet.prependTo($timeLine);
+                currentCount+=1;
+                newCount-= 1;
+              }
             }
 
             $('.showNew').on("click", showNewTweets);
