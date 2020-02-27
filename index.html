@@ -23,7 +23,7 @@ TOP NAV
 
     <section class="container">
       <div class="top-nav">
-        <h3 class="refresh"><a href="index.html"><input class="button" type="submit" value="Latest Tweed"></a></h3>
+        <h3 class="showNew"><input class="button" type="submit" value="Latest Tweed"></h3>
       </div>
     </section>
 
@@ -45,30 +45,59 @@ LEFT NAV
       </nav>
     </section>
 
-<!-- ===================================
-TIMELINE
-=================================== -->
+    <!-- ===================================
+      TIMELINE
+      =================================== -->
 
-      <aside>
-        <script>
+      <div class="tweet-container">
 
-          $(document).ready(function(){
-            var $body = $('body');
-            // $body.html('Loading');
+      </div>
+      <script>
 
-            var index = streams.home.length - 1;
+        $(document).ready(function(){
+          var $timeLine = $('.tweet-container');
+          // $body.html('Loading');
+
+          // var tweetLength = function() {
+          //   function count(){
+          //     return streams.home.length;
+          //   }
+          // }
+            var index = streams.home.length -1;
+            var currentCount = streams.home.length;
+            var newCount = currentCount;
+
             while(index >= 0){
               var tweet = streams.home[index];
               var $tweet = $('<div class="tweets"></div>');
               $tweet.html(tweet.created_at + ' @' + tweet.user + ': ' + tweet.message);
-              $tweet.appendTo($body);
+              $tweet.appendTo($timeLine);
               index -= 1;
             }
+
+
+            function checkTweets(){
+              newCount = streams.home.length;
+              if(newCount > currentCount) {
+                var newIndex = newCount -1;
+                showNewTweets(newIndex);
+              }
+              setTimeout(function() {
+                checkTweets();
+              }, 5 * 1000)
+            }
+            checkTweets();
+
+            function showNewTweets(number){
+                var tweets = streams.home[number];
+                $tweet.html(tweet.created_at + ' @2' + tweet.user + ': ' + tweet.message);
+                $tweet.prependTo($timeLine);
+            }
+
+            $('.showNew').on("click", showNewTweets);
           });
 
         </script>
-
-      </aside>
 
   </body>
 </html>
