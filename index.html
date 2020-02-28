@@ -25,6 +25,7 @@ TOP NAV
       <div class="top-nav">
         <h3 class="showNew"><input class="button" type="submit" value="Latest Tweed"></h3>
       </div>
+      <div class="profile"></div>
     </section>
 
 <!-- ===================================
@@ -34,7 +35,7 @@ LEFT NAV
     <section class="container">
       <nav class="left-nav">
         <ul>
-          <li><a href="#Home">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="#Explore">Explore</a></li>
           <li><a href="Notifications">Notifications</a></li>
           <li><a href="Messages">Messages</a></li>
@@ -49,26 +50,44 @@ LEFT NAV
       TIMELINE
       =================================== -->
 
-      <div class="tweet-container">
+      <div class="container">
+        <section class="main-timeline">
+        </section>
 
+        <section class="userFeed">
+        </section>
       </div>
+
       <script>
 
         $(document).ready(function(){
-          var $timeLine = $('.tweet-container');
+          var $timeLine = $('.main-timeline');
           $timeLine.html('');
 
             var index = streams.home.length -1;
             var currentCount = streams.home.length;
             var newCount = currentCount;
+            $('.userFeed').hide();
+            $('.profile').hide();
 
             while(index >= 0){
               var tweet = streams.home[index];
-              var $tweet = $('<div class="tweets"></div>');
-              $tweet.text(tweet.created_at + ' @' + tweet.user + ': ' + tweet.message);
+
+              var $tweet = $('<div class="tweet"></div>');
+              var $user = $('<p class="user"></p>');
+              var $message = $('<p class="message"></p>');
+              var $timestamp = $('<p class="timestamp"></p>');
+
               $tweet.appendTo($timeLine);
+
+              $timestamp.attr('timestamp-data', tweet.created_at).text(tweet.created_at).appendTo($tweet);
+
+              $user.addClass(tweet.user).data('userdata', tweet.user).text('@' + tweet.user).appendTo($tweet);
+
+              $message.text(tweet.message).appendTo($tweet);
+
               index -= 1;
-            }
+            };
 
             function checkTweets(){
               newCount = streams.home.length;
@@ -82,17 +101,65 @@ LEFT NAV
             checkTweets();
 
             function showNewTweets(){
+              newCount = streams.home.length
               while (newCount > currentCount) {
                 var tweet = streams.home[currentCount+1];
-                var $tweet = $('<div class="tweets"></div>');
-                $tweet.text(tweet.created_at + ' @2' + tweet.user + ': ' + tweet.message);
+
+                var $tweet = $('<div class="tweet"></div>');
+                var $user = $('<p class="user"></p>');
+                var $message = $('<p class="message"></p>');
+                var $timestamp = $('<p class="timestamp"></p>');
+
                 $tweet.prependTo($timeLine);
+
+                $timestamp.attr('timestamp-data', tweet.created_at).text(tweet.created_at).appendTo($tweet);
+
+                $user.addClass(tweet.user).data('userdata', tweet.user).text('@' + tweet.user).appendTo($tweet);
+
+                $message.text(tweet.message).appendTo($tweet);
+
                 currentCount+=1;
                 newCount-= 1;
               }
             }
 
+            function grabTweets() {
+              return $('.tweet');
+            }
+
             $('.showNew').on("click", showNewTweets);
+
+            $('.main-timeline').on("click", '.tweet .user', function(){
+
+              $('.main-timeline').hide();
+              $('.top-nav').hide();
+              $('.userFeed').show();
+              $('.profile').show();
+
+              var userName = $(this).data('userdata');
+              var currentProfile = streams.users[userName];
+
+              var $userTimeline = $('<h3 class="profileName"> @' + userName + "'s Timeline </h3>");
+              $userTimeline.appendTo('.profile');
+
+              for (var i = 0; i < currentProfile.length; i++) {
+                var userTweet = currentProfile[i].message;
+                var $userTweet = $('<div class="tweet"></div>');
+
+                var $user = $('<p class="user"></p>');
+                var $message = $('<p class="message"></p>');
+                var $timestamp = $('<p class="timestamp"></p>');
+
+                $userTweet.appendTo('.userFeed');
+
+                $timestamp.attr('timestamp-data', currentProfile[i].created_at).text(currentProfile[i].created_at).appendTo($userTweet);
+
+                $user.addClass(currentProfile[i].user).data('userdata', currentProfile[i].user).text('@' + currentProfile[i].user).appendTo($userTweet);
+
+                $message.text(currentProfile[i].message).appendTo($userTweet);
+
+              }
+            });
           });
 
         </script>
