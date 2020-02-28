@@ -4,6 +4,8 @@
     <title>Latest Tweed / Twiddler</title>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="livestamp.js"></script>
     <link rel="stylesheet" href="stylesheet.css">
   </head>
 
@@ -83,7 +85,7 @@ TIMELINE
 
               $tweet.appendTo($timeLine);
 
-              $timestamp.attr('timestamp-data', tweet.created_at).text(tweet.created_at).appendTo($tweet);
+              $timestamp.attr('timestamp-data', tweet.created_at).html('<span data-livestamp="'+ tweet.created_at + '"></span>').appendTo($tweet);
 
               $user.addClass(tweet.user).data('userdata', tweet.user).text('@' + tweet.user).appendTo($tweet);
 
@@ -117,7 +119,7 @@ TIMELINE
 
                 $tweet.prependTo($timeLine);
 
-                $timestamp.attr('timestamp-data', tweet.created_at).text(tweet.created_at).appendTo($tweet);
+                $timestamp.attr('timestamp-data', tweet.created_at).html('<span data-livestamp="'+ tweet.created_at + '"></span>').appendTo($tweet);
 
                 $user.addClass(tweet.user).data('userdata', tweet.user).text('@' + tweet.user).appendTo($tweet);
 
@@ -153,9 +155,9 @@ TIMELINE
                 var $message = $('<p class="message"></p>');
                 var $timestamp = $('<p class="timestamp"></p>');
 
-                $userTweet.appendTo('.userFeed');
+                $userTweet.prependTo('.userFeed');
 
-                $timestamp.attr('timestamp-data', currentProfile[i].created_at).text(currentProfile[i].created_at).appendTo($userTweet);
+                $timestamp.attr('timestamp-data', currentProfile[i].created_at).html('<span data-livestamp="'+ currentProfile[i].created_at + '"></span>').appendTo($userTweet);
 
                 $user.addClass(currentProfile[i].user).data('userdata', currentProfile[i].user).text('@' + currentProfile[i].user).appendTo($userTweet);
 
