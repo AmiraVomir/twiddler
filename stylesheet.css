@@ -60,7 +60,7 @@ BODY
 */
 
 body {
-  background-color: white;
+  background-image: linear-gradient(#3F51B5, #673AB7, #9C27B0);
   font: 20px "Arial";
 }
 
@@ -74,6 +74,7 @@ li {
 
 a {
   text-decoration: none;
+  color: white;
 }
 a:hover {
   color: orange;
@@ -86,13 +87,31 @@ HEADER
 */
 
 header {
-  color: cyan;
+  background-color: #00BCD4;
   font-size: 35px;
   text-align: center;
-  display: block;
-  margin: 0 10px;
-  padding: 0 30px;
-  width: auto;
+  display: inline-block;
+
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+header .home-btn {
+  float: left;
+  margin-left: 5%;
+  width: fit-content;
+}
+
+header input.button{
+  background-color: #E91E63;
+  color: white;
+  float: right;
+  border-radius: 15px;
+  margin-right: 5%;
+  margin-top: 5px;
+  padding: 5px 2%;
 }
 
 /*
@@ -108,6 +127,7 @@ TOP NAV
 
 .container .showNew {
   float: center;
+  margin-top: 5%;
   padding-left: 35%;
 }
 
@@ -117,6 +137,7 @@ TOP NAV
 
   float: center;
   margin: auto;
+  margin-top: 5%;
   padding: 3% 3%;
   width: 50%;
   border-radius: 6px;
@@ -157,7 +178,7 @@ div.tweet {
   text-align: left;
 
   float: center;
-  width: 55%;
+  width: 65%;
   border-radius: 15px;
   display: block;
   margin: 5px auto 0px auto;
