@@ -15,6 +15,7 @@ HEADER
 
     <header class="header">
       <h1 class="home-btn"><a href="index.html">Tweedler</a></h1>
+      <h3 class="topButton"><input class="button" type="submit" value="Back To Top"></h3>
     </header>
 
 <!-- ===================================
@@ -46,9 +47,9 @@ LEFT NAV
       </nav>
     </section>
 
-    <!-- ===================================
-      TIMELINE
-      =================================== -->
+<!-- ===================================
+TIMELINE
+=================================== -->
 
       <div class="container">
         <section class="main-timeline">
@@ -69,7 +70,9 @@ LEFT NAV
             var newCount = currentCount;
             $('.userFeed').hide();
             $('.profile').hide();
+            $('.topButton').hide();
 
+            //initial load tweets
             while(index >= 0){
               var tweet = streams.home[index];
 
@@ -89,6 +92,7 @@ LEFT NAV
               index -= 1;
             };
 
+            //check for new tweets
             function checkTweets(){
               newCount = streams.home.length;
               if(newCount > currentCount) {
@@ -100,6 +104,7 @@ LEFT NAV
             }
             checkTweets();
 
+            //load new tweets
             function showNewTweets(){
               newCount = streams.home.length
               while (newCount > currentCount) {
@@ -123,12 +128,10 @@ LEFT NAV
               }
             }
 
-            function grabTweets() {
-              return $('.tweet');
-            }
-
+            //show new tweet button
             $('.showNew').on("click", showNewTweets);
 
+            //show user profile
             $('.main-timeline').on("click", '.tweet .user', function(){
 
               $('.main-timeline').hide();
@@ -160,7 +163,23 @@ LEFT NAV
 
               }
             });
+
+            //back to top button
+            $('.topButton').on("click", function(){
+              document.documentElement.scrollTop = 0;
+            });
           });
+
+            //show/hide button
+            window.onscroll = function() {scrollFunction()};
+
+            function scrollFunction() {
+              if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+                $('.topButton').show();
+              } else {
+                $('.topButton').hide();
+              }
+            }
 
         </script>
 
