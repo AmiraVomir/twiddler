@@ -60,7 +60,7 @@ BODY
 */
 
 body {
-  background-image: linear-gradient(#3F51B5, #673AB7, #9C27B0);
+  background-image: repeating-linear-gradient(#3F51B5, #000000, #3F51B5);
   font: 20px "Arial";
 }
 
@@ -132,8 +132,9 @@ TOP NAV
 }
 
 .container .profile {
-  background-color: pink;
+  background-color: springgreen;
   text-align:center;
+  font-size: 32px;
 
   float: center;
   margin: auto;
@@ -202,5 +203,5 @@ p.user:hover{
 }
 
 p.message {
-  padding-top: 5px;
+  padding-top: 10px;
 }
